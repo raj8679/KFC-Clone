@@ -1,0 +1,53 @@
+
+.anime_parent{
+  width:280px;
+  margin: auto;
+  display: flex;
+  gap: 30px;
+  
+}
+.anime_div_1{
+  width: 60px;
+  
+  background-color:  #e60000;
+  position: relative;
+  animation-name: falldown_1;
+  animation-duration: 2s;
+  animation-iteration-count:1;
+  /* animation-fill-mode: forward; */
+
+}
+@keyframes falldown_1 {
+  from {height: 0vh;}
+  to {height: 100vh;}
+}
+
+.anime_div_2{
+  width: 60px;
+  background-color:  #e60000;
+  position: relative;
+  animation-name: falldown_2;
+  animation-duration:2s;
+  animation-iteration-count: 1;
+  animation-delay:.2s;
+  animation-fill-mode: forwards;
+}
+@keyframes falldown_2 {
+  from {height: 0vh;}
+  to {height: 100vh;}
+}
+
+.anime_div_3{
+  width: 60px;
+  background-color:  #e60000;
+  position: relative;
+  animation-name: falldown_3;
+  animation-duration:2s;
+  animation-iteration-count: 1;
+  animation-delay:.6s;
+  animation-fill-mode: forwards;
+}
+@keyframes falldown_3 {
+  from {height: 0vh;}
+  to {height: 100vh;}
+}

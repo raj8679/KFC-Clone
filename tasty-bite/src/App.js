@@ -1,10 +1,11 @@
-import Animation from "./Components/Animation";
+import Navbar from "./Components/Navbar";
+
 
 
 function App() {
   return (
     <div className="App">
-     <Animation/>
+    <Navbar/>
     </div>
   );
 }

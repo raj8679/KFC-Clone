@@ -1,0 +1,25 @@
+.parent{
+    width: 100vw;
+    height: 15vh;
+    border: 1px solid black;
+    display: flex;
+    gap: 15vw;
+    justify-content: space-around;
+}
+
+.child_one{
+border: 1px solid black;
+width: 40vw;
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.child_two{
+    border: 1px solid black;
+    width: 23vw;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

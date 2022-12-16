@@ -1,25 +1,55 @@
 .parent{
     width: 100vw;
-    height: 15vh;
-    border: 1px solid black;
-    display: flex;
-    gap: 15vw;
-    justify-content: space-around;
+    height: 170px;
 }
 
 .child_one{
-border: 1px solid black;
-width: 40vw;
-height: 100%;
-display: flex;
-justify-content: space-between;
-align-items: center;
+    width: 100%;
+    height: 30%;
+   border: 1px solid black;
+  border-color: rgba(0, 0, 0, 0.305);
 }
-.child_two{
-    border: 1px solid black;
-    width: 23vw;
+.findLocation{
+    width: 36%;
     height: 100%;
+    margin: auto;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+.child_two{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo_part{
+    width: 20%;
+    height: 100%;
+    margin-left: 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+    
+}
+
+.user_part{
+    width: 15%;
+    height: 100%;
+    display: flex;
+    margin-right: 5%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.startOrder{
+    width: 100vw;
+    height: 70px;
+    background-color: #202124;
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     align-items: center;
 }

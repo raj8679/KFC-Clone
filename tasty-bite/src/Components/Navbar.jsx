@@ -1,33 +1,46 @@
 import React from 'react'
 import styles from "../Styles/Navbar.module.css";
 import Logo from "../Images/Logo.jpg"
-import Bag from "../Images/Bag.svg"
-import { Button,Text,Box } from '@chakra-ui/react';
+import { Button,Text,Box,Image } from '@chakra-ui/react';
 
 const Navbar = () => {
   return (
   <> 
-    <div className={styles.parent}>
-        <div className={styles.child_one}>
-            
-            <img style={{width:"150px",height:"100%",borderRadius:"50%"}} src={Logo} alt="logo" />                     
-            <Text as="b">Menu</Text>
-            <Text as="b">Career</Text>
-            <Text as="b">About</Text>
-            <Text as="b">Find A KFC</Text>
-        </div>
-        <div className={styles.child_two}>
-        
-        <Button colorScheme='red' borderRadius="15px" w="10vw">Start Order</Button>
-       <img style={{width:"80px",height:"50%"}} src="https://i.pinimg.com/originals/3f/94/70/3f9470b34a8e3f526dbdb022f9f19cf7.jpg" alt="user" />
-        
-        <img style={{width:"70px",height:"30%"}} src={Bag} alt="Bag" />
-        </div>
-    </div>
+   <Box className={styles.parent}>
 
-    <Box w="100%" bg="black" color="white" textAlign="center">
-        Start an order for Pick a
+    <Box className={styles.child_one}>
+      <Box className={styles.findLocation}>
+      <Image w="20px" src="https://online.kfc.co.in/static/media/Search_Pin.e88a4d93.svg"/>
+      <Text >Allow location access for local store menu and promos</Text>
+      <Button borderRadius="30px" bg="#202124" color="white">Set Location</Button>
+      </Box>     
     </Box>
+
+    <Box className={styles.child_two}>
+      <Box className={styles.logo_part}>
+        <Image w="50%" h="100%" borderRadius="50%" src={Logo}/>
+        <Text as="b">Menu</Text>
+        <Text as="b">Deals</Text>
+      </Box>
+      <Box className={styles.user_part}>
+      <Image w="30px" src="https://images.ctfassets.net/wtodlh47qxpt/6bJdGLRkksNvWP4LI9ZiFF/cb89d6393492fd093e0f99980abfa39e/Account_Icon.svg"/>
+      <Text as="b">Sign In</Text>
+      <Text>|</Text>
+      <Text>₹0</Text>
+      <Image w="50px" src="https://images.ctfassets.net/wtodlh47qxpt/6qtBVFuno7pdwOQ9RIvYm9/d13e9b7242980972cf49beddde2cc295/bucket_cart_icon.svg"></Image>
+      </Box>
+    </Box>
+
+   </Box>
+
+   {/* **************** */}
+
+   <Box className={styles.startOrder}>
+<Text as="b">LET'S ORDER FOR DELIVERY, PICK UP, OR DINE-IN</Text>
+<Button colorScheme="red" borderRadius="40px" size="lg">Start Order</Button>
+   </Box>
+      
+       
     </>
   )
 }

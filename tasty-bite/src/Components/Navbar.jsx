@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../Styles/Navbar.module.css";
+import Navstyles from "../Styles/Navbar.module.css";
 import Logo from "../Images/Logo.jpg";
 import { Button, Text, Box, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
@@ -7,9 +7,9 @@ import { Link as RouterLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <Box className={styles.parent}>
-        <Box className={styles.child_one}>
-          <Box className={styles.findLocation}>
+      <Box className={Navstyles.parent}>
+        <Box className={Navstyles.child_one}>
+          <Box className={Navstyles.findLocation}>
             <Image
               w="20px"
               src="https://online.kfc.co.in/static/media/Search_Pin.e88a4d93.svg"
@@ -21,8 +21,8 @@ const Navbar = () => {
           </Box>
         </Box>
 
-        <Box className={styles.child_two}>
-          <Box className={styles.logo_part}>
+        <Box className={Navstyles.child_two}>
+          <Box className={Navstyles.logo_part}>
             <RouterLink to="/">
               <Image
                 w="50%"
@@ -41,7 +41,7 @@ const Navbar = () => {
               <Text as="b">Deals</Text>
             </RouterLink>
           </Box>
-          <Box className={styles.user_part}>
+          <Box className={Navstyles.user_part}>
             <Image
               w="30px"
               src="https://images.ctfassets.net/wtodlh47qxpt/6bJdGLRkksNvWP4LI9ZiFF/cb89d6393492fd093e0f99980abfa39e/Account_Icon.svg"
@@ -59,7 +59,7 @@ const Navbar = () => {
 
       {/* **************** */}
 
-      <Box className={styles.startOrder}>
+      <Box className={Navstyles.startOrder}>
         <Text as="b">LET'S ORDER FOR DELIVERY, PICK UP, OR DINE-IN</Text>
         <Button colorScheme="red" borderRadius="40px" size="lg">
           Start Order

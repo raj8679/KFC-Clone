@@ -1,0 +1,41 @@
+.SidebarAndMeals{
+    width: 100vw;
+    /* border: 3px solid black; */
+    height: 1300px;
+    display: flex;
+    
+    
+}
+.SidebarBox{
+    width: 20vw;
+    /* border: 1px solid black; */
+    height: 800px;
+   
+}
+.MealsBox{
+    width: 80vw;
+    /* border: 5px solid red; */
+    height: 100%;  
+   overflow: scroll;
+   scroll-behavior: smooth;
+   position: relative;
+
+}
+.MealsBox::-webkit-scrollbar {
+    display: none;
+}
+.MealsCategoryBox{
+    width: 100%;
+   background-color: #f9ecf28e;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.goTop{
+margin-left: 95vw;
+    position: sticky;
+    top: 780px;
+    position: absolute;
+}

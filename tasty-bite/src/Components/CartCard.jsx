@@ -11,10 +11,13 @@ import {
   ButtonGroup,
   Button,
 } from "@chakra-ui/react";
-import { CartContext } from "../Contexts/CartContext";
+import axios from "axios";
 
-const MealsCard = ({image,Title,Description,Price}) => {
-  const{postData}=React.useContext(CartContext);
+const CartCard = ({image,Title,Description,Price,id}) => {
+
+    const deleteCartItem = (id) => {
+        return axios.delete(`http://localhost:8080/posts/${id}`);
+      };
   return (
     <>
       <Card maxW="sm" backgroundColor="white">
@@ -37,8 +40,8 @@ const MealsCard = ({image,Title,Description,Price}) => {
         </CardBody>
         <CardFooter>
           <ButtonGroup spacing="2">
-            <Button colorScheme="red" borderRadius="20px" onClick={()=>postData(image,Title,Description,Price)}>
-              Add to cart
+            <Button colorScheme="red" borderRadius="20px" onClick={()=>deleteCartItem(id)}>
+             Delete
             </Button>
           </ButtonGroup>
         </CardFooter>
@@ -47,5 +50,5 @@ const MealsCard = ({image,Title,Description,Price}) => {
   );
 };
 
-// postData(image={image},Title={Title},Description={Description},Price={Price})
-export default MealsCard;
+
+export default CartCard;

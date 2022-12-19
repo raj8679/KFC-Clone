@@ -11,13 +11,11 @@ import {
   ButtonGroup,
   Button,
 } from "@chakra-ui/react";
-import axios from "axios";
+import { CartContext } from "../Contexts/CartContext";
 
 const CartCard = ({image,Title,Description,Price,id}) => {
-
-    const deleteCartItem = (id) => {
-        return axios.delete(`http://localhost:8080/posts/${id}`);
-      };
+const{deleteCartItem}=React.useContext(CartContext);
+    
   return (
     <>
       <Card maxW="sm" backgroundColor="white">

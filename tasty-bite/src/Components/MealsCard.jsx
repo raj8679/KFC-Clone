@@ -27,7 +27,7 @@ const MealsCard = ({image,Title,Description,Price}) => {
           <Stack mt="3" spacing="3">
             <Heading size="md">{Title}</Heading>
             <Text color="blue.600" fontSize="2xl">
-              {Price}
+            ₹{Price}
             </Text>
             <Text>
               {Description}

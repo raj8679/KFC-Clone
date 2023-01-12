@@ -8,5 +8,7 @@ Features:
 Tech Stacks: 
 HTML  |  CSS  |  JavaScript  |   React   |   chakra-ui
 
+Link: https://63c0230127c5672308d75987--fantastic-beignet-7f319c.netlify.app
+
 
 

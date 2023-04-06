@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 export const CartContext = React.createContext();
 
 export default function CartContextProvider({ children }) {
-  const[data,setData]=React.useState([]);
+  const[data,setData]=useState([]);
 
 // const totalPrice=()=>{
 //  data.forEach((el)=>{

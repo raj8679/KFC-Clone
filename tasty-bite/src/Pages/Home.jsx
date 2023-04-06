@@ -12,15 +12,15 @@ import Animation from "../Components/Animation"
 const Home = () => {
   const[animationRender,setAnimationRender]=React.useState(true)
 
-  React.useEffect(()=>{
-setTimeout(()=>{
-setAnimationRender(false)
-},2000)
-  },[])
+//   React.useEffect(()=>{
+// setTimeout(()=>{
+// setAnimationRender(false)
+// },2000)
+//   },[])
 
-if(animationRender){
-  return <Animation/>
-}
+// if(animationRender){
+//   return <Animation/>
+// }
 
   return (
     <>
@@ -67,7 +67,7 @@ if(animationRender){
           mt="10px"
         >
           {categoryData.map((el) => {
-            return <FoodCard img={el.img} title={el.title} />;
+            return <FoodCard key={el.id} img={el.img} title={el.title} />;
           })}
         </Box>
       </Box>
@@ -102,7 +102,7 @@ if(animationRender){
           overflowX="auto"
         >
          {dealsData.map((el)=>{
-          return <DealsCard img={el.img} title={el.title} details={el.details}></DealsCard>
+          return <DealsCard key={el.id} img={el.img} title={el.title} details={el.details}></DealsCard>
          })}
         </Box>
       </Box>

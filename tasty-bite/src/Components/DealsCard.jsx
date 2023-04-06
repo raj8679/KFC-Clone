@@ -12,7 +12,7 @@ const DealsCard = ({img,title,details}) => {
  
    <Box  h="29%">
    <Text as="b" fontSize="3xl" color="red" display="flex" justifyContent="center">{title}</Text>
-   <Box overFlow-Y="scroll"><Text>{details}</Text></Box>
+   <Box overflow-y="scroll"><Text>{details}</Text></Box>
    
    </Box>
    

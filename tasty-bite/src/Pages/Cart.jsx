@@ -29,7 +29,7 @@ getCart()
     <Box w="100vw" display="flex" gap="15px">
     <Box border="2px solid red" w="70%" display="grid" gridTemplateColumns="repeat(4,1fr)">
     {data.map((el)=>{
-  return <CartCard image={el.image} Title={el.Title} Description={el.Description} Price={el.Price} id={el.id} />
+  return <CartCard key={el.id} image={el.image} Title={el.Title} Description={el.Description} Price={el.Price} id={el.id} />
 })}
     </Box>
     {/* <Box border="2px solid teal" w="25%" h="400px">

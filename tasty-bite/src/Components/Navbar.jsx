@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navstyles from "../Styles/Navbar.module.css";
 import Logo from "../Images/Logo.jpg";
 import { Button, Text, Box, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Contexts/AuthContext";
+import {auth} from "../firebase"
+import { useState } from "react";
+import { signOut } from "firebase/auth";
 
 const Navbar = () => {
+  const [flag, setFlag] = useState(false)
+  const {loggedUserName,setLoggedUserName} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const handleSignInBtn = () => {
+  navigate("/login")
+  };
+  
+  const handleLogout = async () => {
+  await signOut(auth).then(res => setLoggedUserName(""))
+  }
+  useEffect(() => {
+  auth.onAuthStateChanged(user => {
+    setLoggedUserName(user.displayName)
+    
+  })
+  },[])
   return (
     <>
       <Box className={Navstyles.parent}>
@@ -42,11 +64,25 @@ const Navbar = () => {
             </RouterLink>
           </Box>
           <Box className={Navstyles.user_part}>
-            <Image
+            <Box>
+            <Image 
+            _hover={{cursor:"pointer"}}
+            onClick={() => setFlag(!flag)}
               w="30px"
               src="https://images.ctfassets.net/wtodlh47qxpt/6bJdGLRkksNvWP4LI9ZiFF/cb89d6393492fd093e0f99980abfa39e/Account_Icon.svg"
             />
-            <Text as="b">Sign In</Text>
+            {flag ? 
+            <>
+            <Box border="1px solid purple" borderRadius="5px" w="max-content" h="min-content" p="10px" position="absolute" bg="white" color="black" display="flex" flexDirection="column" gap="10px"> 
+            <Text fontWeight="bold" as="i">Welcome <span style={{color:"tomato"}}>{loggedUserName}</span></Text>
+            <Button colorScheme='red' onClick={handleLogout}>LogOut</Button>
+          </Box>
+            </>:
+            null}
+          
+            </Box>
+            
+            <Text as="b" onClick={handleSignInBtn} _hover={{cursor:"pointer"}}>{loggedUserName? loggedUserName : "Sign In"}</Text>
             <Text>|</Text>
             <Text>₹0</Text>
             <RouterLink to="/cart">
@@ -73,3 +109,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

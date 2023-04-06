@@ -38,7 +38,7 @@ const Deals = () => {
          justifyContent="space-between"
          gap="20px">
       {data.map((el)=>{
-        return <DealsCard img={el.img} title={el.title} details={el.details}></DealsCard>
+        return <DealsCard key={el.id} img={el.img} title={el.title} details={el.details}></DealsCard>
       })}
     </Box>
     <Footer/>

@@ -12,15 +12,15 @@ import Animation from "../Components/Animation"
 const Home = () => {
   const[animationRender,setAnimationRender]=React.useState(true)
 
-//   React.useEffect(()=>{
-// setTimeout(()=>{
-// setAnimationRender(false)
-// },2000)
-//   },[])
+  React.useEffect(()=>{
+setTimeout(()=>{
+setAnimationRender(false)
+},2000)
+  },[])
 
-// if(animationRender){
-//   return <Animation/>
-// }
+if(animationRender){
+  return <Animation/>
+}
 
   return (
     <>

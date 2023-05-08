@@ -1,32 +1,49 @@
 import React, { useEffect } from "react";
 import Navstyles from "../Styles/Navbar.module.css";
 import Logo from "../Images/Logo.jpg";
-import { Button, Text, Box, Image } from "@chakra-ui/react";
+import {
+  Button,
+  Text,
+  Box,
+  Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  IconButton,
+} from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Contexts/AuthContext";
-import {auth} from "../firebase"
+import { auth } from "../firebase";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
+import { FaUserCircle } from "react-icons/fa";
 
 const Navbar = () => {
-  const [flag, setFlag] = useState(false)
-  const {loggedUserName,setLoggedUserName} = useContext(AuthContext)
+  const { loggedUserName, setLoggedUserName, setDeletePass } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSignInBtn = () => {
-  navigate("/login")
+    navigate("/login");
   };
-  
+
   const handleLogout = async () => {
-  await signOut(auth).then(res => setLoggedUserName(""))
-  }
+    await signOut(auth).then((res) => setLoggedUserName(""));
+  };
+
+  const handleDeleteAccountBtn =() => {
+  navigate("/login")
+  setDeletePass(true)
+  };
+
   useEffect(() => {
-  auth.onAuthStateChanged(user => {
-    setLoggedUserName(user.displayName)
-    
-  })
-  },[])
+    auth.onAuthStateChanged((user) => {
+      if(user){
+        setLoggedUserName(user.displayName);
+      }     
+    });
+  }, []);
   return (
     <>
       <Box className={Navstyles.parent}>
@@ -56,7 +73,9 @@ const Navbar = () => {
             </RouterLink>
 
             <RouterLink to="/menu">
-              <Text as="b" mr="20px">Menu</Text>
+              <Text as="b" mr="20px">
+                Menu
+              </Text>
             </RouterLink>
 
             <RouterLink to="/deals">
@@ -64,34 +83,55 @@ const Navbar = () => {
             </RouterLink>
           </Box>
           <Box className={Navstyles.user_part}>
-            <Box>
-            <Image 
-            _hover={{cursor:"pointer"}}
-            onClick={() => setFlag(!flag)}
-              w="30px"
-              src="https://images.ctfassets.net/wtodlh47qxpt/6bJdGLRkksNvWP4LI9ZiFF/cb89d6393492fd093e0f99980abfa39e/Account_Icon.svg"
-            />
-            {flag ? 
-            <>
-            <Box border="1px solid purple" borderRadius="5px" w="max-content" h="min-content" p="10px" position="absolute" bg="white" color="black" display="flex" flexDirection="column" gap="10px"> 
-            <Text fontWeight="bold" as="i">Welcome <span style={{color:"tomato"}}>{loggedUserName}</span></Text>
-            <Button colorScheme='red' onClick={handleLogout}>LogOut</Button>
-          </Box>
-            </>:
-            null}
-          
-            </Box>
-            
-            <Text as="b" onClick={handleSignInBtn} _hover={{cursor:"pointer"}}>{loggedUserName? loggedUserName : "Sign In"}</Text>
+            {loggedUserName ? (
+              <>
+                <Menu isLazy>
+                  <MenuButton
+                    as={IconButton}
+                    icon={<FaUserCircle size={"30"} />}
+                    variant={"unstyled"}
+                  ></MenuButton>
+                  <MenuList>
+                    {/* MenuItems are not rendered unless Menu is open */}
+                    <MenuItem>
+                      {" "}
+                      <Text fontWeight="bold" as="i">
+                        Welcome{" "}
+                        <span style={{ color: "tomato" }}>
+                          {loggedUserName}
+                        </span>
+                      </Text>
+                    </MenuItem>
+                    <MenuItem>Orders</MenuItem>
+                    <MenuItem>Cart</MenuItem>
+                    <MenuItem>Register</MenuItem>
+                   
+                    <MenuItem color={"tomato"} onClick={handleLogout}>
+                      LogOut
+                    </MenuItem>
+                    <MenuItem onClick={handleDeleteAccountBtn} color={"tomato"}>
+                      Delete account
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </>
+            ) : null}
+
+            <Text
+              as="b"
+              onClick={handleSignInBtn}
+              _hover={{ cursor: "pointer" }}
+            >
+              {loggedUserName ? loggedUserName : "Log In"}
+            </Text>
             <Text>|</Text>
             <Text>₹0</Text>
             <RouterLink to="/cart">
-            <Image
-              w="50px"
-              src="https://images.ctfassets.net/wtodlh47qxpt/6qtBVFuno7pdwOQ9RIvYm9/d13e9b7242980972cf49beddde2cc295/bucket_cart_icon.svg"
-            ></Image>
+              <Image
+                w="50px"
+                src="https://images.ctfassets.net/wtodlh47qxpt/6qtBVFuno7pdwOQ9RIvYm9/d13e9b7242980972cf49beddde2cc295/bucket_cart_icon.svg"
+              ></Image>
             </RouterLink>
-            
           </Box>
         </Box>
       </Box>
@@ -109,4 +149,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

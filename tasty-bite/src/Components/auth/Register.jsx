@@ -19,7 +19,7 @@ import {
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
   import { useNavigate } from 'react-router-dom';
 
-  import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
+  import {createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, updateProfile} from "firebase/auth";
   import {auth} from "../../firebase";
 import { AuthContext } from '../../Contexts/AuthContext';
 
@@ -39,29 +39,61 @@ import { AuthContext } from '../../Contexts/AuthContext';
    };
 
    const handleRegisterform = async() => {
-    console.log(name,email,password);
-    await createUserWithEmailAndPassword(auth,email,password)
-    .then(async(res) => {
-      
-      const user = res.user
-     await updateProfile(user,{
-        displayName: name
-      });
-      setLoggedUserName(res.user.displayName);
+    try{
+      let user;
+      await createUserWithEmailAndPassword(auth,email,password)
+      .then(async(res) => {   
+         user = res.user;
+       await updateProfile(user,{
+          displayName: name
+        });
+        // setLoggedUserName(res.user.displayName);
+      },
+     
+        )
+      .catch(err=> 
+        toast({
+          title: err.message,
+          status: 'error',
+          duration: 3500,
+          isClosable: true,
+        })        
+        )
+        if(user){
+          navigate("/login")
+        }
+    } catch(err) {
+      console.log(err)
     }
-      )
-    .catch(err=> console.log(err.message))
-
-    toast({
-      title: 'Account created.',
-      description: "account created successfully",
-      status: 'success',
-      duration: 2000,
-      isClosable: true,
-    });
-    navigate("/login")
-   }
   
+      // await sendEmailVerification(user)
+
+      // if(user.emailVerified){
+      //   toast({
+      //     title: 'Account created.',
+      //     description: "account created successfully",
+      //     status: 'success',
+      //     duration: 2000,
+      //     isClosable: true,
+      //   });
+
+      //   navigate("/login")
+      // } else {
+      //   toast({
+      //     title: 'Wrong Email',
+      //     description: "Email Verification failed",
+      //     status: 'error',
+      //     duration: 2000,
+      //     isClosable: true,
+      //   });
+      // }
+   
+    
+   }
+   
+   auth.onAuthStateChanged(user => {
+    console.log(user)
+   });
     return (
       <Flex
         minH={'100vh'}
@@ -120,6 +152,7 @@ import { AuthContext } from '../../Contexts/AuthContext';
                     bg: 'blue.500',                   
                   }}
                   onClick={handleRegisterform}
+                  isDisabled={!name || !email || !password}
                   >
                   Sign up
                 </Button>
